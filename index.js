@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const cors = require('cors');
 const MongoClient = require('mongodb').MongoClient;
-const url = "mongodb://localhost:27017/";
+const url = "mongodb://kishore:abcd1234@ds261114.mlab.com:61114/switchon";
 
 const app = express();
 app.use(bodyParser.json());
