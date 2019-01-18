@@ -15,8 +15,8 @@ app.get('/',(req,res)=>{
 app.get('/details',(req,res)=>{
     MongoClient.connect(url, function(err, db) {
         if (err) console.log(err);
-        const dbo = db.db("SwitchOn");
-        dbo.collection("Part History").find().toArray((err, result)=> {
+        const dbo = db.db("switchon");
+        dbo.collection("PartHistory").find().toArray((err, result)=> {
           if (err) console.log(err);
           res.send(result);
           db.close();
