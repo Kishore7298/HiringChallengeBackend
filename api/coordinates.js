@@ -16,5 +16,25 @@ router.get('/',(req, res, next)=>{
             db.close();
         })
     });
-})
+});
+
+router.post('/',(req, res, next)=>{
+    const coordinates = {
+        numberOfParts:req.body.numberOfParts,
+        time:req.body.time
+    }
+    MongoClient.connect(url,(err, db)=>{
+        if(err){
+            throw err;
+        }
+        const database = db.db("switchon");
+        database.collection("PartHistory").insertOne(coordinates,{ useNewUrlParser: true},(err,result)=>{
+            if(err) throw err;
+            res.status(201).json({
+                message:"Updated Succesfully!!",
+                result:result,
+            });
+        });
+    });
+});
 module.exports = router;
