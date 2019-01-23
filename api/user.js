@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const cors = require('cors');
 const MongoClient = require('mongodb').MongoClient;
 const bcrypt = require('bcrypt');
 const url = "mongodb://kishore:abcd1234@ds161724.mlab.com:61724/switchon";
 
-router.post('/signup',(req, res, next)=>{
+router.post('/signup',cors(),(req, res, next)=>{
     bcrypt.hash(req.body.password, 10 ,(err, hash)=>{
         if(err){
             res.status(500).json({
@@ -30,7 +31,7 @@ router.post('/signup',(req, res, next)=>{
     });
 });
 
-router.post('/signin',(req, res, next)=>{
+router.post('/signin',cors(),(req, res, next)=>{
     MongoClient.connect(url,{ useNewUrlParser: true }, (err, db)=>{
         if(err){
             res.status(404).json({
