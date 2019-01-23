@@ -5,11 +5,14 @@ const cors = require('cors');
 const coordinateRoute = require('./api/coordinates');
 const userRoute = require('./api/user');
 
-
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
-app.use(cors());
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 app.use('/coordinates',coordinateRoute);
 app.use('/user',userRoute);
 
