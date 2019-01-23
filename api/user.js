@@ -42,31 +42,31 @@ router.post('/signin',(req, res, next)=>{
             if(errr){
                return res.status(404).json({
                     error: errr.message,
-                    status:0
+                    status:"0"
                 });
             }
             if(result.length < 1){
                 return res.status(404).json({
                     error: "Authentication Failed!",
-                    status:0
+                    status:"0"
                 });
             }
             bcrypt.compare(req.body.password, result.password, (eror, boole)=>{
                 if(eror){
                     return res.status(404).json({
                         error: "Authentication Failed!",
-                        status:0
+                        status:"0"
                     });
                 }
                 if(boole){
                     return res.status(200).json({
                         message:"Authentication Succesful!!"
-                        status:1
+                        status:"1"
                     })
                 }
                 return res.status(404).json({
                     error: "Authentication Failed!",
-                    status:0
+                    status:"0"
                 })
 
             })
