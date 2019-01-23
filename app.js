@@ -5,7 +5,7 @@ const cors = require('cors');
 const coordinateRoute = require('./api/coordinates');
 const userRoute = require('./api/user');
 
-app.use(cors);
+app.use(cors());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
