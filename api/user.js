@@ -60,7 +60,7 @@ router.post('/signin',(req, res, next)=>{
                 }
                 if(boole){
                     return res.status(200).json({
-                        message:"Authentication Succesful!!"
+                        message:"Authentication Succesful!!",
                         status:"1"
                     })
                 }
