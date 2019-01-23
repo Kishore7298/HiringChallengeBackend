@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-//const cors = require('cors');
+const cors = require('cors');
 const coordinateRoute = require('./api/coordinates');
 const userRoute = require('./api/user');
 
+app.use(cors);
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
@@ -24,4 +25,3 @@ app.use((err,req,res,next)=>{
 });
 
 module.exports = app;
-
