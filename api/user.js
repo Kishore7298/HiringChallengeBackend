@@ -35,7 +35,7 @@ router.post('/signin',(req, res, next)=>{
     MongoClient.connect(url,{ useNewUrlParser: true }, (err, db)=>{
         if(err){
             res.status(404).json({
-                error: err.message
+                error: "failed"
             })
         }
         const database = db.db("switchon");
@@ -46,15 +46,16 @@ router.post('/signin',(req, res, next)=>{
                     status:"0"
                 });
             }
-            if(result.length < 1){
-                return res.status(404).json({
-                    error: "Authentication Failed!",
+            if(result == null){
+                return res.json({
+                    error: "Authentication Failed! rey",
+                    email:req.body.email,
                     status:"0"
                 });
             }
             bcrypt.compare(req.body.password, result.password, (eror, boole)=>{
                 if(eror){
-                    return res.status(404).json({
+                    return res.json({
                         error: "Authentication Failed!",
                         status:"0"
                     });
@@ -65,7 +66,7 @@ router.post('/signin',(req, res, next)=>{
                         status:"1"
                     })
                 }
-                return res.status(404).json({
+                return res.json({
                     error: "Authentication Failed!",
                     status:"0"
                 })
